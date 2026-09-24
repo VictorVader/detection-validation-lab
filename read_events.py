@@ -12,10 +12,15 @@ def matches(event, rule):
         return False
     return True
 
-with open("data/events.jsonl") as f:
-    for line in f:
-        event = json.loads(line)
-        if matches(event, rule):
-            print("ALERT:", rule["title"], "-", event)
-        else:
-            print("ok:   ", event)
+def check_file(path):
+    print(f"--- {path} ---")
+    with open(path) as f:
+        for line in f:
+            event = json.loads(line)
+            if matches(event, rule):
+                print("ALERT:", rule["title"], "-", event)
+            else:
+                print("ok:   ", event)
+
+check_file("data/events.jsonl")
+check_file("data/benign_events.jsonl")
