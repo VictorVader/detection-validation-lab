@@ -2,3 +2,4 @@
 {"time": "09:05:12", "user": "alice", "process": "powershell.exe", "command": "powershell.exe -Command Get-Process"}
 {"time": "09:10:44", "user": "alice", "process": "powershell.exe", "command": "powershell.exe -enc SQBFAFgA"}
 {"time": "09:15:00", "user": "bob", "process": "notepad.exe", "command": "notepad.exe report.txt"}
+{"time": "09:20:00", "user": "bob", "process": "procdump.exe", "command": "procdump.exe -ma lsass.exe out.dmp"}

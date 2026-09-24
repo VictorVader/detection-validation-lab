@@ -2,3 +2,4 @@
 {"time": "08:05:00", "user": "carol", "process": "powershell.exe", "command": "powershell.exe -Command Get-Service"}
 {"time": "08:10:00", "user": "dave", "process": "cmd.exe", "command": "cmd.exe /c dir"}
 {"time": "08:15:00", "user": "dave", "process": "outlook.exe", "command": "outlook.exe"}
+{"time": "08:20:00", "user": "carol", "process": "procdump.exe", "command": "procdump.exe -ma myapp.exe out.dmp"}

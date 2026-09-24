@@ -1,0 +1,5 @@
+title: LSASS Memory Dump via procdump
+technique: T1003.001
+detection:
+  process_contains: procdump
+  command_contains: lsass
