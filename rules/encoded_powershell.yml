@@ -1,0 +1,5 @@
+title: Encoded PowerShell Command
+technique: T1059.001
+detection:
+  process_contains: powershell
+  command_contains: -enc

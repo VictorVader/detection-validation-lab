@@ -1,12 +1,21 @@
 import json
+import yaml
 
-def is_encoded_powershell(event):
-    return "powershell" in event["process"] and "-enc" in event["command"]
+with open("rules/encoded_powershell.yml") as f:
+    rule = yaml.safe_load(f)
+
+def matches(event, rule):
+    d = rule["detection"]
+    if d["process_contains"] not in event["process"]:
+        return False
+    if d["command_contains"] not in event["command"]:
+        return False
+    return True
 
 with open("data/events.jsonl") as f:
     for line in f:
         event = json.loads(line)
-        if is_encoded_powershell(event):
-            print("ALERT:", event)
+        if matches(event, rule):
+            print("ALERT:", rule["title"], "-", event)
         else:
             print("ok:   ", event)
