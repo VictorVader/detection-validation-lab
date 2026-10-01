@@ -1,12 +1,24 @@
+# Run a rule against its expected-alert and expected-silent datasets
+
+# A "case" is a YAML file saying: this rule should fire on these events,
+# and stay silent on these other events. evaluate_case() checks both
+
 import yaml
 from dvl.loader import load_dataset
 from dvl.sigma_eval import load_rule, matches
 
 def load_case(path):
+    # Load one test case YAML file into a dict
     with open(path) as f:
         return yaml.safe_load(f)
 
 def evaluate_case(case):
+    # Check a rule against its should_alert / should_not_alert datasets
+
+    # Returns counts (tp/fp/fn/tn) plus a pass/fail flag. A case fails if
+    # the rule misses an attack it should catch (false negative) or fires
+    # on something benign (false positive)
+
     rule = load_rule(case["rule"])
 
     tp = 0

@@ -1,7 +1,11 @@
+# Turn evaluate_case() results into precision/recall and a readable summary
+
 def precision(tp, fp):
+    """Of everything flagged, what fraction was actually an attack?"""
     return tp / (tp + fp) if (tp + fp) else 0.0
 
 def recall(tp, fn):
+    """Of all real attacks, what fraction did the rule catch?"""
     return tp / (tp + fn) if (tp + fn) else 0.0
 
 def summarize(results):

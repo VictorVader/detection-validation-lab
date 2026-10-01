@@ -1,3 +1,5 @@
+# Command-line entrypoint: python -m dvl <run|validate|report|respond>
+
 import argparse
 import os
 
@@ -10,6 +12,7 @@ from dvl.respond import build_case, write_case
 
 
 def load_all_rules(folder="rules"):
+    # Load every rule YAML file in a folder
     rules = []
     for name in os.listdir(folder):
         if name.endswith(".yml"):
@@ -18,6 +21,7 @@ def load_all_rules(folder="rules"):
 
 
 def cmd_run(args):
+    # Fire every rule at a dataset and print alerts/ok lines
     rules = load_all_rules()
     for event in load_dataset(args.data):
         hit = False
@@ -30,6 +34,7 @@ def cmd_run(args):
 
 
 def cmd_validate(args):
+    # Run every test case, print a pass/fail summary, exit nonzero on failure
     results = []
     for name in os.listdir(args.cases):
         if name.endswith(".yml"):
@@ -41,6 +46,7 @@ def cmd_validate(args):
 
 
 def cmd_report(args):
+    # Write the ATT&CK Navigator layer from current test case results
     results = []
     for name in os.listdir(args.cases):
         if name.endswith(".yml"):
@@ -51,6 +57,7 @@ def cmd_report(args):
 
 
 def cmd_respond(args):
+    # Fire rules at a dataset and write a case file for each alert
     rules = load_all_rules()
     for event in load_dataset(args.data):
         for rule in rules:
