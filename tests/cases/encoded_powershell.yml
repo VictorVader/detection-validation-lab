@@ -1,0 +1,5 @@
+rule: rules/encoded_powershell.yml
+should_alert:
+  - datasets/malicious/T1059.001_encoded_powershell.jsonl
+should_not_alert:
+  - datasets/benign

@@ -1,0 +1,5 @@
+rule: rules/lsass_dump.yml
+should_alert:
+  - datasets/malicious/T1003.001_lsass_dump.jsonl
+should_not_alert:
+  - datasets/benign
