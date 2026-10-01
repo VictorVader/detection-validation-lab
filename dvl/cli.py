@@ -6,6 +6,7 @@ from dvl.sigma_eval import load_rule, matches
 from dvl.validate import load_case, evaluate_case
 from dvl.metrics import summarize
 from dvl.navigator import write_layer
+from dvl.respond import build_case, write_case
 
 
 def load_all_rules(folder="rules"):
@@ -49,6 +50,16 @@ def cmd_report(args):
     print("wrote reports/navigator_layer.json")
 
 
+def cmd_respond(args):
+    rules = load_all_rules()
+    for event in load_dataset(args.data):
+        for rule in rules:
+            if matches(event, rule):
+                case = build_case(rule, event)
+                path = write_case(case)
+                print("wrote", path)
+
+
 def main():
     parser = argparse.ArgumentParser(prog="dvl")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -64,6 +75,10 @@ def main():
     rep_p = sub.add_parser("report", help="write ATT&CK Navigator layer")
     rep_p.add_argument("--cases", default="tests/cases")
     rep_p.set_defaults(func=cmd_report)
+
+    res_p = sub.add_parser("respond", help="turn alerts into case files")
+    res_p.add_argument("--data", default="datasets/malicious")
+    res_p.set_defaults(func=cmd_respond)
 
     args = parser.parse_args()
     args.func(args)
