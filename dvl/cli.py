@@ -5,6 +5,7 @@ from dvl.loader import load_dataset
 from dvl.sigma_eval import load_rule, matches
 from dvl.validate import load_case, evaluate_case
 from dvl.metrics import summarize
+from dvl.navigator import write_layer
 
 
 def load_all_rules(folder="rules"):
@@ -38,6 +39,16 @@ def cmd_validate(args):
         exit(1)  # non-zero exit = CI fails if any rule is broken
 
 
+def cmd_report(args):
+    results = []
+    for name in os.listdir(args.cases):
+        if name.endswith(".yml"):
+            case = load_case(os.path.join(args.cases, name))
+            results.append(evaluate_case(case))
+    write_layer(results)
+    print("wrote reports/navigator_layer.json")
+
+
 def main():
     parser = argparse.ArgumentParser(prog="dvl")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -49,6 +60,10 @@ def main():
     val_p = sub.add_parser("validate", help="run detection test cases")
     val_p.add_argument("--cases", default="tests/cases")
     val_p.set_defaults(func=cmd_validate)
+
+    rep_p = sub.add_parser("report", help="write ATT&CK Navigator layer")
+    rep_p.add_argument("--cases", default="tests/cases")
+    rep_p.set_defaults(func=cmd_report)
 
     args = parser.parse_args()
     args.func(args)
