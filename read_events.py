@@ -1,5 +1,6 @@
 import os
-from detect import load_rule, load_events, matches
+from dvl.loader import load_events
+from dvl.sigma_eval import load_rule, matches
 
 def load_all_rules(folder):
     rules = []

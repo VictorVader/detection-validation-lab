@@ -1,4 +1,5 @@
-from detect import load_rule, load_events, matches
+from dvl.loader import load_events
+from dvl.sigma_eval import load_rule, matches
 
 def test_encoded_powershell_detects_attack():
     rule = load_rule("rules/encoded_powershell.yml")
