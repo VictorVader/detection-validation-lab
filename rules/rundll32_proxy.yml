@@ -1,0 +1,5 @@
+title: Suspicious Rundll32 Execution
+technique: T1218.011
+detection:
+  process_contains: rundll32
+  command_contains: javascript

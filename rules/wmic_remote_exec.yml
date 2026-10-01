@@ -1,0 +1,5 @@
+title: Remote Process Creation via WMI
+technique: T1047
+detection:
+  process_contains: wmic
+  command_contains: process call create

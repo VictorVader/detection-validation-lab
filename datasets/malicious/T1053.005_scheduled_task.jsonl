@@ -1,0 +1,1 @@
+{"time": "09:25:00", "user": "bob", "process": "schtasks.exe", "command": "schtasks.exe /create /sc minute /tn evil /tr payload.exe"}

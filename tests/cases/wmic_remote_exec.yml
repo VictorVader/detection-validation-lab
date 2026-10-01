@@ -1,0 +1,5 @@
+rule: rules/wmic_remote_exec.yml
+should_alert:
+  - datasets/malicious/T1047_wmic_remote_exec.jsonl
+should_not_alert:
+  - datasets/benign

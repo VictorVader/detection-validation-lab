@@ -1,0 +1,5 @@
+rule: rules/rundll32_proxy.yml
+should_alert:
+  - datasets/malicious/T1218.011_rundll32_proxy.jsonl
+should_not_alert:
+  - datasets/benign

@@ -1,0 +1,1 @@
+{"time": "09:35:00", "user": "bob", "process": "wmic.exe", "command": "wmic.exe /node:SRV01 process call create cmd.exe"}

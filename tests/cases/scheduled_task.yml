@@ -1,0 +1,5 @@
+rule: rules/scheduled_task.yml
+should_alert:
+  - datasets/malicious/T1053.005_scheduled_task.jsonl
+should_not_alert:
+  - datasets/benign

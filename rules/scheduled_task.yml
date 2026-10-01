@@ -1,0 +1,5 @@
+title: Scheduled Task Created via schtasks
+technique: T1053.005
+detection:
+  process_contains: schtasks
+  command_contains: /create
