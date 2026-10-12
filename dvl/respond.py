@@ -1,4 +1,4 @@
-# """Turn an alert into a structured case file (not a real SOAR integration)
+# Turn an alert into a structured case file (not a real SOAR integration)
 
 # This is deliberately a stub: it proves the pipeline ends somewhere besides
 # a print statement, with a stable case ID and a per-technique playbook
@@ -7,6 +7,7 @@ import json
 import os
 import hashlib
 from datetime import datetime, timezone
+from dvl.sigma_eval import get_technique
 
 # Suggested next steps per technique. Not executed, just documented
 PLAYBOOKS = {
@@ -26,7 +27,7 @@ def build_case(rule, event):
     # Build a case dict for one alert. The case_id is a hash of rule+event,
     # so re-running on the same data produces the same ID instead of a new
     # case every time
-    technique = rule["technique"]
+    technique = get_technique(rule)
     fingerprint = hashlib.sha1(
         f"{rule['title']}|{event.get('command')}".encode()
     ).hexdigest()[:10]

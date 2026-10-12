@@ -1,5 +1,12 @@
 title: LSASS Memory Dump via procdump
-technique: T1003.001
+id: T1003.001-lsass-dump
+status: experimental
+logsource:
+  category: process_creation
 detection:
-  process_contains: procdump
-  command_contains: lsass
+  selection:
+    Image|contains: procdump
+    CommandLine|contains: lsass
+  condition: selection
+tags:
+  - attack.t1003.001

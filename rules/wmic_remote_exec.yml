@@ -1,5 +1,12 @@
 title: Remote Process Creation via WMI
-technique: T1047
+id: T1047-wmic-process-call
+status: experimental
+logsource:
+  category: process_creation
 detection:
-  process_contains: wmic
-  command_contains: process call create
+  selection:
+    Image|contains: wmic
+    CommandLine|contains: 'process call create'
+  condition: selection
+tags:
+  - attack.t1047

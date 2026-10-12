@@ -1,5 +1,12 @@
 title: Suspicious Rundll32 Execution
-technique: T1218.011
+id: T1218.011-rundll32
+status: experimental
+logsource:
+  category: process_creation
 detection:
-  process_contains: rundll32
-  command_contains: javascript
+  selection:
+    Image|contains: rundll32
+    CommandLine|contains: 'javascript:'
+  condition: selection
+tags:
+  - attack.t1218.011

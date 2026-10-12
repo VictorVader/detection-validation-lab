@@ -1,1 +1,1 @@
-{"time": "09:30:00", "user": "alice", "process": "rundll32.exe", "command": "rundll32.exe javascript:eval(\"malicious code\")"}
+{"UtcTime": "09:30:00", "User": "alice", "Image": "rundll32.exe", "CommandLine": "rundll32.exe javascript:eval(\"malicious code\")"}

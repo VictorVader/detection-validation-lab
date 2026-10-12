@@ -4,7 +4,7 @@
 # to see which techniques are covered by passing rules
 
 import json
-from dvl.sigma_eval import load_rule
+from dvl.sigma_eval import load_rule, get_technique
 
 def build_layer(results, name="Detection Validation Lab"):
     # Build the Navigator layer dict: one scored entry per rule's technique
@@ -13,7 +13,7 @@ def build_layer(results, name="Detection Validation Lab"):
     techniques = []
     for r in results:
         rule = load_rule(r["rule"])
-        technique_id = rule["technique"]
+        technique_id = get_technique(rule)
         score = 100 if r["passed"] else 50  # green if tests pass, else amber
         techniques.append({
             "techniqueID": technique_id,
